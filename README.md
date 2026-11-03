@@ -36,6 +36,10 @@ Import("ComparisonGen_Mod.avsi")
 
 See [ComparisonGen_Example.avs](Examples/ComparisonGen_Example.avs) for a usage example.
 
+## Credits
+
+This project is based on ComparisonGen 1.0.6, with additional modifications and features.
+
 ## License
 
 No license specified.
