@@ -5,7 +5,7 @@ An AviSynth+ function for generating frame comparison images from multiple video
 ## Features
 
 - Compare multiple video sources simultaneously.
-- Support independent starting frames for each source without using Trim() to cut the clips.
+- Support independently aligned starting frames for each source without using Trim() to cut the video clips.
 - Select frames based on frame types (I, P, B, PB, IPB).
 - Use a shared relative offset across all sources.
 - Set a minimum interval between consecutive selected frames.
