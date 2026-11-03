@@ -5,11 +5,12 @@ An AviSynth+ function for generating frame comparison images from multiple video
 ## Features
 
 - Compare multiple video sources simultaneously.
-- Support independent starting frames for each source.
+- Support independent starting frames for each source without using Trim() to cut the clips.
 - Select frames based on frame types (I, P, B, PB, IPB).
 - Use a shared relative offset across all sources.
 - Set a minimum interval between consecutive selected frames.
 - Export comparison frames directly as PNG images.
+- Preserve the original source frame numbers displayed by LWLinfo() in the exported comparison images.
 - Support multiple output filename formats.
 - Preserve source overlays and labels.
 
