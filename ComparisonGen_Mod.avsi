@@ -1,6 +1,6 @@
 
 # ============================================================
-# ComparisonGen.avsi
+# ComparisonGen_Mod.avsi
 #
 # Requirements:
 # AviSynth+ >= r3573
@@ -8,8 +8,6 @@
 # RT_Stats
 #
 # Features:
-# - No Trim()
-# - No FrameSel()
 # - Independent start frame for each source
 # - Shared relative offset between sources
 # - Minimum interval between selected offsets
@@ -17,6 +15,7 @@
 # - Original frame numbers in filenames
 # - 3 filename formats
 # - Preserves LWLinfo() overlay in source clips
+# - Reads _PictType from a single-frame clip
 # ============================================================
 
 
@@ -205,7 +204,9 @@ Function ComparisonGen(clip_array c, string_array "image_file", val_array "frame
                     for (j = 0, c_last)
                     {
                         _frame = _starts[j] + _offset
-                        _actual_type = propGetString(c[j], "_PictType", offset=_frame)
+
+                        # Read _PictType from the requested frame.
+                        _actual_type = _ComparisonGen_GetPictType(c[j], _frame)
 
                         _ok = false
 
@@ -255,7 +256,9 @@ Function ComparisonGen(clip_array c, string_array "image_file", val_array "frame
             for (j = 0, c_last)
             {
                 _frame = _starts[j] + _offset
-                _actual_type = propGetString(c[j], "_PictType", offset=_frame)
+
+                # Read _PictType from the requested frame.
+                _actual_type = _ComparisonGen_GetPictType(c[j], _frame)
 
                 _ok = false
 
@@ -297,7 +300,7 @@ Function ComparisonGen(clip_array c, string_array "image_file", val_array "frame
             }
 
             # Convert the ORIGINAL source.
-            # Do not use Trim() or FrameSel().
+            # Do not use Trim() or FrameSel() for export.
 
             if (IsRGB(c[i]))
             {
@@ -314,6 +317,20 @@ Function ComparisonGen(clip_array c, string_array "image_file", val_array "frame
     }
 
     Return MessageClip("ComparisonGen: Done. " + String(ArraySize(_offsets)) + " comparison sets.")
+}
+
+
+# ============================================================
+# READ PICTURE TYPE FROM A SINGLE FRAME
+# ============================================================
+
+Function _ComparisonGen_GetPictType(clip c, int frame_number)
+{
+    # Make the requested source frame frame 0 of a new clip.
+    _single_frame = Trim(c, frame_number, frame_number)
+
+    # Read the frame property from frame 0.
+    return propGetString(_single_frame, "_PictType")
 }
 
 
