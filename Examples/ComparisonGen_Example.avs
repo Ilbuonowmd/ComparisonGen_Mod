@@ -12,7 +12,7 @@ c = LWLibavVideoSource("I:\Test\Test3.mkv")
 c = c.LWLinfo(textcolor=$B0C4DE).subtitle("HDDVD", align=7, y=35, text_color=$B0C4DE)
 
 # Generate comparison images
-ComparisonGen([a, b, c], start_frames=[20, 0, 155], image_file=["BD", "WEB", "HDDVD"], frame_type=["B", "B", "B"], n=7, min_frame_interval=500, filename_format=1, output_dir="I:\Test\Comparison_Output")
+ComparisonGen([a, b, c], start_frames=[20, 0, 155], image_file=["BD", "WEB", "HDDVD"], frame_type=["B", "B", "B"], n=7, min_frame_interval=500, check_type=true, filename_format=1, output_dir="I:\Test\Comparison_Output")
 
 # [a, b, c] - Video sources to be compared (e.g. [a, b, c])
 # start_frames - Starting frame number for each source (e.g. [0, 100, 250])
